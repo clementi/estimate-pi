@@ -42,7 +42,6 @@ object Main extends App {
   private def createPairs(count: Int, limit: Int, rng: Random): LazyList[(Int, Int)] = {
     if (count == 0) LazyList.empty
     else createRandomPair(limit, rng) #:: createPairs(count - 1, limit, rng)
-    // (0 until count).map(_ => createRandomPair(limit, rng))
   }
 
   private def createRandomPair(limit: Int, rng: Random): (Int, Int) =
