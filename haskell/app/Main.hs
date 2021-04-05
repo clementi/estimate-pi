@@ -22,10 +22,11 @@ averageEstimate g estimateCount pairCount = do
 
 makeEstimates :: RNG -> Int -> Int -> IO [Double]
 makeEstimates _ 0 _ = return []
-makeEstimates g estimateCount pairCount = do
-  estimate <- estimatePi g pairCount
-  putStrLn $ "Estimate: " <> show estimate
-  fmap (estimate :) (makeEstimates g (estimateCount - 1) pairCount)
+makeEstimates g estimateCount pairCount =
+  sequence (take estimateCount (repeat $ do
+    estimate <- estimatePi g pairCount
+    putStrLn $ "Estimate: " <> show estimate
+    return estimate))
 
 estimatePi :: RNG -> Int -> IO Double
 estimatePi g pairCount = do
@@ -36,10 +37,7 @@ estimatePi g pairCount = do
   return estimate
 
 makePairs :: RNG -> Int -> IO [(Word64, Word64)]
-makePairs _ 0 = return []
-makePairs g pairCount = do
-  pair <- makePair g
-  fmap (pair :) (makePairs g (pairCount - 1))
+makePairs g pairCount = sequence (take pairCount (repeat (makePair g)))
 
 makePair :: RNG -> IO (Word64, Word64)
 makePair g = pairSequence (uniform g, uniform g)
