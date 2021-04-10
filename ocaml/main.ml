@@ -18,7 +18,7 @@ let estimatePi pairCount =
 
 let estimateAndShow pairCount i =
   let estimate = estimatePi pairCount in
-  let _ = Printf.printf ("Estimate %d: %f\n") i estimate
+  let _ = Printf.printf ("Estimate %d: %f\n%!") i estimate
   in estimate
 
 let rec makeEstimates estimateCount pairCount =
