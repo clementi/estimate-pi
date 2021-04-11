@@ -2,6 +2,9 @@
 
 ## Description
 
-Implementations in several programming languages of an algorithm to estimate the value of pi by using pseudorandom numbers. The algorithm is based on the process given by Matt Parker of [Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
+Implementations in several programming languages of an algorithm to estimate the value of pi by using pseudorandom numbers. The algorithm is based on the process given by [Matt Parker of Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
+
+![Matt Parker]()
 
 ![Performance stats](https://docs.google.com/spreadsheets/d/e/2PACX-1vR1SyRMrdmPEf6gXgfvdEXJqs6-sqIgpq3z3R6HXxoS10OLPprLmWWx8HZwLTrqLURx6pnthEDD45HB/pubchart?oid=1935298427&format=image)
+
