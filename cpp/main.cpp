@@ -3,7 +3,8 @@
 #include <ctime>
 #include <iostream>
 
-using namespace std;
+using std::cout;
+using std::endl;
 
 unsigned int gcd(unsigned int a, unsigned int b) {
     if (b == 0)
