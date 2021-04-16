@@ -1,3 +1,7 @@
+(import :gerbil/gambit/random)
+
+(export main)
+
 (define (make-pairs pair-count limit)
   (if (zero? pair-count)
       '()
@@ -32,7 +36,8 @@
       (cons (estimate-pi pair-count limit)
             (make-estimates (- estimate-count 1) pair-count limit))))
 
-(let ((mean (average-estimates 100 1000000 1000000000)))
-  (display "Mean: ")
-  (display mean)
-  (newline))
+(define (main . args)
+  (let ((mean (average-estimates 100 1000000 1000000000)))
+    (display "Mean: ")
+    (display mean)
+    (newline)))
