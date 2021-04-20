@@ -15,6 +15,8 @@ At a high level, the algorithm computes the average of 100 estimates of pi. The 
 ```
 * Generate 1000000 pairs of random "large" integers.
 * Count how many of these pairs are coprime.
-* Calculate the proportion of the pairs of random integers that are coprime. This will be an estimate of the probability that two randomly selected "large" integers are coprime.
+* Calculate the proportion of the pairs of random integers that are coprime.
+  This is an estimate of the probability that two randomly selected "large"
+  integers are coprime.
 * Use the theorem pi = sqrt(6 / probability) to estimate pi.
 ```
