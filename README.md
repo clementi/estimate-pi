@@ -6,6 +6,12 @@ This repository contains implementations in several programming languages of an 
 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
 
+The formula for approximating pi that is used here is
+
+![Approximating pi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cpi%20%5Capprox%20%5Csqrt%7B%5Cfrac%7B6%7D%7Bp%7D%7D)
+
+where _p_ is the probability that two randomly selected large integers are coprime. Matt Parker explains this formula and gives a proof for it in the video above.
+
 ## The Algorithm
 
 At a high level, the algorithm computes the average of 100 estimates of pi. The estimation algorithm is as follows:
