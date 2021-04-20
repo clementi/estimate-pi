@@ -6,8 +6,6 @@ This repository contains implementations in several programming languages of an 
 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
 
-[![Performance stats](https://docs.google.com/spreadsheets/d/e/2PACX-1vR1SyRMrdmPEf6gXgfvdEXJqs6-sqIgpq3z3R6HXxoS10OLPprLmWWx8HZwLTrqLURx6pnthEDD45HB/pubchart?oid=1935298427&format=image)](https://docs.google.com/spreadsheets/d/1xdHP06eoPLs7hgXIyKkfdL_ETco1unpjLdVDoXO3nuY/edit?usp=sharing)
-
 ## The Algorithm
 
 At a high level, the algorithm computes the average of 100 estimates of pi. The estimation algorithm is as follows:
@@ -22,3 +20,10 @@ At a high level, the algorithm computes the average of 100 estimates of pi. The 
 ```
 
 In the implementations in this repository, the algorithm above comes in two general forms. First, there is the straightforward form that is best exemplified in the C example. This form utilizes mutable state, and it maps most directly to the algorithm described above. The other form is one that does not use mutable state, either because the language doesn't easily support it, such as the Haskell example, or the best practices of the language discourage the use of mutable state, or that the algorithm could be more naturally expressed in the language without using mutable state. I may produce versions in these languages that make use of mutable state, and I may make versions that are optimized for tail recursion, and see how the performance changes.
+
+## Performance
+
+As would be expected, there is a wide variance of performance with different languages. The chart below illustrates performance stats that I've gathered.
+
+[![Performance stats](https://docs.google.com/spreadsheets/d/e/2PACX-1vR1SyRMrdmPEf6gXgfvdEXJqs6-sqIgpq3z3R6HXxoS10OLPprLmWWx8HZwLTrqLURx6pnthEDD45HB/pubchart?oid=1935298427&format=image)](https://docs.google.com/spreadsheets/d/1xdHP06eoPLs7hgXIyKkfdL_ETco1unpjLdVDoXO3nuY/edit?usp=sharing)
+
