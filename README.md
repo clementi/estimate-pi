@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This repository contains implementations in several programming languages of an algorithm to estimate the value of pi by using pseudorandom numbers. The algorithm is based on the process given by [Matt Parker of Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
+This repository contains implementations in several programming languages of an algorithm to estimate the value of &pi; by using pseudorandom numbers. The algorithm is based on the process given by [Matt Parker of Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
 
-The formula for approximating pi that is used here is
+The formula for approximating &pi; that is used here is
 
 ![Approximating pi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cpi%20%5Capprox%20%5Csqrt%7B%5Cfrac%7B6%7D%7Bp%7D%7D)
 
@@ -14,7 +14,7 @@ where _p_ is the probability that two randomly selected large integers are copri
 
 ## The Algorithm
 
-At a high level, the algorithm computes the average of 100 estimates of pi. The estimation algorithm is as follows:
+Each example computes the average of 100 estimates of &pi;. The estimation algorithm is as follows:
 
 ```
 * Generate 1000000 pairs of random "large" integers.
@@ -22,7 +22,7 @@ At a high level, the algorithm computes the average of 100 estimates of pi. The 
 * Calculate the proportion of the pairs of random integers that are coprime.
   This is an estimate of the probability that two randomly selected "large"
   integers are coprime.
-* Use the formula pi = sqrt(6 / probability) to calculate an estimate of pi.
+* Use the formula &pi; = sqrt(6 / probability) to calculate an estimate of pi.
 ```
 
 In the implementations in this repository, the algorithm above comes in two general forms. First, there is the straightforward form that is best exemplified in the C example. This form utilizes mutable state, and it maps most directly to the algorithm described above. The other form is one that does not use mutable state, either because the language doesn't easily support it, such as the Haskell example, or the best practices of the language discourage the use of mutable state, or that the algorithm could be more naturally expressed in the language without using mutable state. I may produce versions in these languages that make use of mutable state, and I may make versions that are optimized for tail recursion, and see how the performance changes.
