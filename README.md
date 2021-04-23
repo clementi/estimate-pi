@@ -22,7 +22,7 @@ Each example computes the average of 100 estimates of &pi;. The estimation algor
 * Calculate the proportion of the pairs of random integers that are coprime.
   This is an estimate of the probability that two randomly selected "large"
   integers are coprime.
-* Use the formula &pi; = sqrt(6 / probability) to calculate an estimate of pi.
+* Use the formula π = sqrt(6 / probability) to calculate an estimate of π.
 ```
 
 In the implementations in this repository, the algorithm above comes in two general forms. First, there is the straightforward form that is best exemplified in the C example. This form utilizes mutable state, and it maps most directly to the algorithm described above. The other form is one that does not use mutable state, either because the language doesn't easily support it, such as the Haskell example, or the best practices of the language discourage the use of mutable state, or that the algorithm could be more naturally expressed in the language without using mutable state. I may produce versions in these languages that make use of mutable state, and I may make versions that are optimized for tail recursion, and see how the performance changes.
