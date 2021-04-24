@@ -1,4 +1,4 @@
-let limit = 100_000_0000
+let limit = 1_000_000_000
 
 var coprimeCount = 0
 let pairCount = 1_000_000
