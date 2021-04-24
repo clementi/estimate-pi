@@ -1,5 +1,5 @@
 def gcd(a, b)
-  if b == 0 then
+  if b == 0
     a
   else
     gcd(b, a % b)
@@ -18,7 +18,7 @@ rng = Random.new
 
 estimate_count.times do |i|
   pair_count.times do |j|
-    if gcd(rng.rand(limit), rng.rand(limit)) == 1 then
+    if gcd(rng.rand(limit), rng.rand(limit)) == 1
       coprime_count += 1
     end
   end
