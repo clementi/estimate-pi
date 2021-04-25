@@ -18,7 +18,7 @@ main = do
 averageEstimate :: RNG -> Int -> Int -> IO Double
 averageEstimate g estimateCount pairCount = do
   estimates <- makeEstimates g estimateCount pairCount
-  return (sum estimates / fromIntegral (length estimates))
+  return (sum estimates / fromIntegral estimateCount)
 
 makeEstimates :: RNG -> Int -> Int -> IO [Double]
 makeEstimates _ 0 _ = return []
