@@ -27,7 +27,7 @@ object Main extends App {
       println(s"Estimate $i: $estimate")
       estimate
     }
-    estimates.sum / estimates.length
+    estimates.sum / estimateCount
   }
 
   private def coprime(pair: (Int, Int)): Boolean =
