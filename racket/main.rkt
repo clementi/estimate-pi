@@ -24,7 +24,7 @@
 
 (define (average-estimates estimate-count pair-count limit)
   (let [(estimates (make-estimates estimate-count pair-count limit))]
-    (/ (apply + estimates) (length estimates))))
+    (/ (apply + estimates) estimate-count)))
 
 (define (make-estimates estimate-count pair-count limit)
   (if (zero? estimate-count)

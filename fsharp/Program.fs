@@ -26,8 +26,8 @@ let estimateAndShow pairCount i =
     estimate
 
 let averageEstimate estimateCount pairCount =
-    let estimates = seq { 0 .. estimateCount - 1 } |> Seq.toList |> List.map (estimateAndShow pairCount) 
-    float (List.sum estimates) / float (List.length estimates)
+    let estimates = seq { 0 .. estimateCount - 1 } |> Seq.toList |> List.map (estimateAndShow pairCount)
+    float (List.sum estimates) / float estimateCount
 
 [<EntryPoint>]
 let main _ =

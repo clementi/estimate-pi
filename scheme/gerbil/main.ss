@@ -36,7 +36,7 @@
       (cons (estimate-pi pair-count limit)
             (make-estimates (- estimate-count 1) pair-count limit))))
 
-(define (main . args)
+(def (main . args)
   (let ((mean (average-estimates 100 1000000 1000000000)))
     (display "Mean: ")
     (display mean)
