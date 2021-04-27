@@ -1,14 +1,9 @@
-ulong gcd(ulong a, ulong b) {
-    if (b == 0)
-        return a;
-    return gcd(b, a % b);
-}
-
 void main()
 {
     import std.stdio : writefln;
     import std.random : Mt19937_64, unpredictableSeed;
     import std.math : sqrt;
+    import std.numeric : gcd;
     import std.conv : to;
 
     Mt19937_64 gen;
