@@ -14,7 +14,6 @@ estimateSum = 0.0
 rng = new Random()
 
 estimateCount.times {
-    i = it
     pairCount.times {
         if (gcd(rng.nextInt(limit), rng.nextInt(limit)) == 1)
             coprimeCount++
@@ -22,7 +21,7 @@ estimateCount.times {
 
     probability = coprimeCount / pairCount
     estimate = Math.sqrt(6.0 / probability)
-    println("Estimate " + i + ": " + estimate)
+    println("Estimate " + it + ": " + estimate)
     estimateSum += estimate
     coprimeCount = 0
 }
