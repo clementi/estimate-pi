@@ -14,7 +14,7 @@ Scheme (Chez, --optimize-level 3)	32.24
 Rust (--release)	34.325
 Python (PyPy 3)	36.495
 D (dmd -O)	39.397
-Go (-ldflags "-s -w")	48.215
+Go	48.215
 Haskell (ghc -O2, using C FFI)	49.13
 F#	49.942
 Racket	56.958
