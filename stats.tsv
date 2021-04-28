@@ -1,3 +1,4 @@
+Language	WSL2
 Crystal (crystal --release)	12.688
 C (clang -O2)	13.875
 C++ (clang++ -O2)	14.175
