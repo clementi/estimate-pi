@@ -1,0 +1,38 @@
+Crystal (crystal --release)	12.688
+C (clang -O2)	13.875
+C++ (clang++ -O2)	14.175
+D (ldc -O2)	14.545
+Java	15.068
+JavaScript (NodeJS)	15.424
+Lua (LuaJIT)	18.869
+JavaScript (nashorn, JDK 11.0.10)	21.105
+Nim (--opt:speed)	21.437
+C#	29.692
+Scala	29.924
+Julia	32.069
+Scheme (Chez, --optimize-level 3)	32.24
+Rust (--release)	34.325
+Python (PyPy 3)	36.495
+D (dmd -O)	39.397
+Go (-ldflags "-s -w")	48.215
+Haskell (ghc -O2, using C FFI)	49.13
+F#	49.942
+Racket	56.958
+Groovy	59.88
+OCaml (ocamlopt -O2)	59.903
+Scheme (Chicken, csc -O2)	71.22
+Scheme (Guile)	79.23
+Swift (swiftc -O)	81.55
+Scheme (Gerbil, gxc -O -static -exe)	90.38
+Haskell (ghc -O2)	93.76
+Erlang	96.5
+Elixir (MIX_ENV=prod)	97.45
+JavaScript (Rhino 1.7.13)	97.82
+Ruby (--jit)	98.1
+Lua	155.41
+Scheme (Chicken, csi -s)	171.74
+Scheme (Gerbil, gxi)	202.04
+Python (CPython 3)	213.63
+Clojure (JDK 11.0.10, -Xss512m)	381.01
+Python (Jython 2.7.2, JDK 11.0.10)	516.66
+Python (IronPython 2.7.11)	799.94
