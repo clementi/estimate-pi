@@ -19,8 +19,8 @@ estimate_count = 100
 
 estimate_sum = 0
 
-for i = 0,estimate_count,1 do
-  for j = 0,pair_count,1 do
+for i = 0,estimate_count-1,1 do
+  for j = 0,pair_count-1,1 do
     if coprime(math.random(limit), math.random(limit)) then
       coprime_count = coprime_count + 1
     end

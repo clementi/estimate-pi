@@ -19,8 +19,8 @@ var estimateSum: float64 = 0.0
 
 var r = initRand(getNanos())
 
-for i in 0 .. estimateCount:
-  for j in 0 .. pairCount:
+for i in 0 .. estimateCount - 1:
+  for j in 0 .. pairCount - 1:
     if coprime(r.rand(limit) + 1, r.rand(limit) + 1):
       coprimeCount += 1
 
