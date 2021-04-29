@@ -34,6 +34,6 @@ Lua	155.41
 Scheme (Chicken, csi -s)	171.74
 Scheme (Gerbil, gxi)	202.04
 Python (CPython 3)	213.63
-Clojure (JDK 11.0.10, -Xss512m)	381.01
+Clojure (JDK 11.0.10, -Xss512m)	346.66
 Python (Jython 2.7.2, JDK 11.0.10)	516.66
 Python (IronPython 2.7.11)	799.94
