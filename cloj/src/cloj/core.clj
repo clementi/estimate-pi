@@ -2,8 +2,7 @@
   (:gen-class))
 
 (defn make-pair [rng limit]
-  (list (.nextInt rng limit)
-        (.nextInt rng limit)))
+  [(.nextInt rng limit) (.nextInt rng limit)])
 
 (defn make-pairs [rng pair-count limit]
   (if (zero? pair-count)
@@ -16,10 +15,8 @@
     a
     (gcd b (mod a b))))
 
-(defn coprime? [pair]
-  (let [a (first pair)
-        b (last pair)]
-    (= (gcd a b) 1)))
+(defn coprime? [[a b]]
+  (= (gcd a b) 1))
 
 (defn estimate-pi [rng pair-count limit]
   (let [pairs (make-pairs rng pair-count limit)
