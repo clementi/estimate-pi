@@ -23,7 +23,7 @@ coprime({A, B}) ->
     gcd(A, B) == 1.
 
 estimatePi(Limit, PairCount) ->
-    CoprimeCount = length(lists:filter(fun(Pair) -> coprime(Pair) end, createPairs(PairCount, Limit))),
+    CoprimeCount = length(lists:filter(fun coprime/1, createPairs(PairCount, Limit))),
     Probability = CoprimeCount / PairCount,
     math:sqrt(6 / Probability).
 
