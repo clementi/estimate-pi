@@ -1,4 +1,3 @@
-import scala.annotation.tailrec
 import scala.util.Random
 
 object Main extends App {
@@ -30,13 +29,13 @@ object Main extends App {
     estimates.sum / estimateCount
   }
 
-  private def coprime(pair: (Int, Int)): Boolean =
-    gcd(pair._1, pair._2) == 1
+  private def coprime(pair: (Int, Int)): Boolean = pair match {
+    case (a, b) => gcd(a, b) == 1
+  }
 
-  @tailrec
-  private def gcd(a: Int, b: Int): Int = {
-    if (b == 0) a
-    else gcd(b, a % b)
+  private def gcd: (Int, Int) => Int = {
+    case (a, 0) => a
+    case (a, b) => gcd(b, a % b)
   }
 
   private def createPairs(count: Int, limit: Int, rng: Random): LazyList[(Int, Int)] = {
