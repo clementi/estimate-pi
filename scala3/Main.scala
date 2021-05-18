@@ -17,6 +17,7 @@ private def average(rng: Random, estimateCount: Int, limit: Int, pairCount: Int)
     estimate
   }
   estimates.sum / estimateCount
+end average
 
 private def estimatePi(rng: Random, limit: Int, pairCount: Int): Double =
   val coprimeCount = createPairs(rng, pairCount, limit)
@@ -26,14 +27,14 @@ private def estimatePi(rng: Random, limit: Int, pairCount: Int): Double =
   val probability = coprimeCount.toDouble / pairCount
 
   math.sqrt(6 / probability)
+end estimatePi
 
 private def coprime(pair: (Int, Int)): Boolean = pair match
   case (a, b) => gcd(a, b) == 1
 
-private def gcd: (Int, Int) => Int = {
+private def gcd: (Int, Int) => Int =
   case (a, 0) => a
   case (a, b) => gcd(b, a % b)
-}
 
 private def createPairs(rng: Random, count: Int, limit: Int): LazyList[(Int, Int)] =
   if count == 0 then LazyList.empty
