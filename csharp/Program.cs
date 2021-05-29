@@ -8,47 +8,38 @@ namespace csharp
     {
         static void Main(string[] args)
         {
-            int pairCount = 1000000;
+            int pairCount = 1_000_000;
             int estimateCount = 100;
+
+            int coprimeCount = 0;
 
             double sum = 0.0;
 
+            var rng = new Random();
+
             for (int i = 0; i < estimateCount; i++)
             {
-                double estimate = EstimatePi(pairCount);
+                for (int j = 0; j < pairCount; j++)
+                    if (Coprime((uint)rng.Next(), (uint)rng.Next()))
+                        coprimeCount++;
+
+                double probability = (double)coprimeCount / pairCount;
+                double estimate = Math.Sqrt(6 / probability);
                 Console.WriteLine("Estimate {0}: {1}", i, estimate);
                 sum += estimate;
+                coprimeCount = 0;
             }
 
             Console.WriteLine("Mean: {0}", sum / estimateCount);
         }
 
-        private static double EstimatePi(int pairCount)
-        {
-            int coprimeCount = CreatePairs(pairCount)
-                .Where(Coprime)
-                .Count();
-
-            double probability = (double) coprimeCount / pairCount;
-
-            return Math.Sqrt(6 / probability);
-        }
-
-        private static bool Coprime((uint, uint) pair) => Gcd(pair.Item1, pair.Item2) == 1;
+        private static bool Coprime(uint a, uint b) => Gcd(a, b) == 1;
 
         private static ulong Gcd(uint a, uint b)
         {
             if (b == 0)
                 return a;
             return Gcd(b, a % b);
-        }
-
-        private static IEnumerable<(uint, uint)> CreatePairs(int count)
-        {
-            var rng = new Random();
-
-            for (int i = 0; i < count; i++)
-                yield return ((uint) rng.Next(), (uint) rng.Next());
         }
     }
 }

@@ -11,9 +11,9 @@ Scala (no mutable state, -J-Xss512m)	17.991
 Lua (LuaJIT)	18.869
 JavaScript (nashorn, JDK 11.0.10)	21.105
 Nim (--opt:speed)	21.437
+C#	25.084
 F#	26.881
 Scala 3 (-J-Xss512m)	27.143
-C#	29.692
 Julia	32.069
 Scheme (Chez, --optimize-level 3)	32.24
 Rust (--release)	34.325
