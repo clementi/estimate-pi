@@ -1,48 +1,40 @@
+import math.sqrt
 import scala.util.Random
 
 object Main extends App {
-  val limit = 1000000000
-  val pairCount = 1000000
+  val limit = 1_000_000_000
+  val pairCount = 1_000_000
   val estimateCount = 100
 
-  val estimate = average(estimateCount, limit, pairCount)
+  val rng = new Random
 
-  println(s"Mean: $estimate")
+  val estimates = LazyList.from(0)
+    .take(estimateCount)
+    .map(i => estimatePi(i, rng, limit, pairCount))
 
-  private def estimatePi(limit: Int, pairCount: Int): Double = {
-    val rng = new Random
-    val coprimeCount = createPairs(pairCount, limit, rng)
-      .filter(coprime)
-      .length
+  println(s"Mean: ${estimates.sum / estimateCount}")
 
+  private def estimatePi(i: Int, rng: Random, limit: Int, pairCount: Int): Double = {
+    val coprimeCount = countCoprime(rng, limit, pairCount)
     val probability = coprimeCount.toDouble / pairCount
-
-    math.sqrt(6 / probability)
+    val estimate = sqrt(6 / probability)
+    println(s"Estimate $i: $estimate")
+    estimate
   }
 
-  private def average(estimateCount: Int, limit: Int, pairCount: Int): Double = {
-    val estimates = (0 until estimateCount).map { i =>
-      val estimate = estimatePi(limit, pairCount)
-      println(s"Estimate $i: $estimate")
-      estimate
-    }
-    estimates.sum / estimateCount
+  private def countCoprime(rng: Random, limit: Int, pairCount: Int): Int = {
+    if (pairCount == 0)
+      0
+    else if (coprime(rng.nextInt(limit), rng.nextInt(limit)))
+      1 + countCoprime(rng, limit, pairCount - 1)
+    else
+      countCoprime(rng, limit, pairCount - 1)
   }
 
-  private def coprime(pair: (Int, Int)): Boolean = pair match {
-    case (a, b) => gcd(a, b) == 1
-  }
+  private def coprime(a: Int, b: Int): Boolean = gcd(a, b) == 1
 
   private def gcd: (Int, Int) => Int = {
     case (a, 0) => a
     case (a, b) => gcd(b, a % b)
   }
-
-  private def createPairs(count: Int, limit: Int, rng: Random): LazyList[(Int, Int)] = {
-    if (count == 0) LazyList.empty
-    else createRandomPair(limit, rng) #:: createPairs(count - 1, limit, rng)
-  }
-
-  private def createRandomPair(limit: Int, rng: Random): (Int, Int) =
-    (rng.nextInt(limit), rng.nextInt(limit))
 }
