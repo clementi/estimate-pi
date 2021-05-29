@@ -1,3 +1,4 @@
+import math.sqrt
 import scala.util.Random
 
 @main def main: Unit =
@@ -7,39 +8,30 @@ import scala.util.Random
 
   val rng = new Random
 
-  val estimate = average(rng, estimateCount, limit, pairCount)
-  println(s"Mean: $estimate")
+  val estimates = LazyList.from(0)
+    .take(estimateCount)
+    .map(i => estimatePi(i, rng, limit, pairCount))
 
-private def average(rng: Random, estimateCount: Int, limit: Int, pairCount: Int): Double =
-  val estimates = (0 until estimateCount).map { i =>
-    val estimate = estimatePi(rng, limit, pairCount)
-    println(s"Estimate $i: $estimate")
-    estimate
-  }
-  estimates.sum / estimateCount
-end average
+  println(s"Mean: ${estimates.sum / estimateCount}")
+end main
 
-private def estimatePi(rng: Random, limit: Int, pairCount: Int): Double =
-  val coprimeCount = createPairs(rng, pairCount, limit)
-    .filter(coprime)
-    .length
-
+private def estimatePi(i: Int, rng: Random, limit: Int, pairCount: Int): Double =
+  val coprimeCount = countCoprime(rng, limit, pairCount)
   val probability = coprimeCount.toDouble / pairCount
+  val estimate = sqrt(6 / probability)
+  println(s"Estimate $i: $estimate")
+  estimate
 
-  math.sqrt(6 / probability)
-end estimatePi
+private def countCoprime(rng: Random, limit: Int, pairCount: Int): Int =
+  if pairCount == 0 then
+    0
+  else if coprime(rng.nextInt(limit), rng.nextInt(limit)) then
+    1 + countCoprime(rng, limit, pairCount - 1)
+  else
+    countCoprime(rng, limit, pairCount - 1)
 
-private def coprime(pair: (Int, Int)): Boolean = pair match
-  case (a, b) => gcd(a, b) == 1
+private def coprime(a: Int, b: Int): Boolean = gcd(a, b) == 1
 
 private def gcd: (Int, Int) => Int =
   case (a, 0) => a
   case (a, b) => gcd(b, a % b)
-
-private def createPairs(rng: Random, count: Int, limit: Int): LazyList[(Int, Int)] =
-  if count == 0 then LazyList.empty
-  else createRandomPair(rng, limit) #:: createPairs(rng, count - 1, limit)
-
-private def createRandomPair(rng: Random, limit: Int): (Int, Int) =
-  (rng.nextInt(limit), rng.nextInt(limit))
-
