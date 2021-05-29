@@ -5,6 +5,8 @@ C++ (clang++ -O2)	14.175
 D (ldc -O2)	14.545
 Java	15.068
 JavaScript (NodeJS)	15.424
+Kotlin	15.971
+Scala (with mutable state)	16.865
 Lua (LuaJIT)	18.869
 JavaScript (nashorn, JDK 11.0.10)	21.105
 Nim (--opt:speed)	21.437
