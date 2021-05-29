@@ -11,6 +11,7 @@ Scala (no mutable state, -J-Xss512m)	17.991
 Lua (LuaJIT)	18.869
 JavaScript (nashorn, JDK 11.0.10)	21.105
 Nim (--opt:speed)	21.437
+F#	26.881
 Scala 3 (-J-Xss512m)	27.143
 C#	29.692
 Julia	32.069
@@ -20,7 +21,6 @@ Python (PyPy 3)	36.495
 D (dmd -O)	39.397
 Go	48.215
 Haskell (ghc -O2, using C FFI)	49.13
-F#	49.942
 Racket	56.958
 Groovy	59.88
 OCaml (ocamlopt -O2)	59.903
