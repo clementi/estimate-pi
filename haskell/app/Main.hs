@@ -1,48 +1,44 @@
 module Main where
 
 import Control.Monad ( liftM2 )
-import System.Random.MWC
-import Data.Word ( Word64 )
-import GHC.Exts ( RealWorld )
+import Data.Time.Clock.POSIX ( getPOSIXTime )
 
-type RNG = Gen RealWorld
+import Foreign
+import Foreign.C.Types
+
+foreign import ccall unsafe "stdlib.h srand" c_srand :: Int -> IO ()
+foreign import ccall unsafe "stdlib.h rand" c_rand :: IO Int
 
 main :: IO ()
 main = do
   let pairCount = 1000000
-  let estimateCount = 100
-  g <- createSystemRandom
-  estimate <- averageEstimate g estimateCount pairCount
-  putStrLn $ "Mean: " <> show estimate
+      estimateCount = 100
+  millis <- fmap round getPOSIXTime
+  _ <- c_srand millis
+  estimatesSum <- sumEstimates estimateCount pairCount
+  putStrLn $ "Mean: " <> show (estimatesSum / fromIntegral estimateCount)
 
-averageEstimate :: RNG -> Int -> Int -> IO Double
-averageEstimate g estimateCount pairCount = do
-  estimates <- makeEstimates g estimateCount pairCount
-  return (sum estimates / fromIntegral estimateCount)
+sumEstimates :: Int -> Int -> IO Double
+sumEstimates 0 _ = return 0.0
+sumEstimates estimateCount pairCount = do
+  estimate <- estimatePi pairCount
+  fmap (+ estimate) (sumEstimates (estimateCount - 1) pairCount)
 
-makeEstimates :: RNG -> Int -> Int -> IO [Double]
-makeEstimates _ 0 _ = return []
-makeEstimates g estimateCount pairCount =
-  sequence (take estimateCount (repeat $ do
-    estimate <- estimatePi g pairCount
-    putStrLn $ "Estimate: " <> show estimate
-    return estimate))
-
-estimatePi :: RNG -> Int -> IO Double
-estimatePi g pairCount = do
-  pairs <- makePairs g pairCount
-  let coprimeCount = length $ filter (uncurry coprime) pairs
-      probability = fromIntegral coprimeCount / fromIntegral pairCount
+estimatePi :: Int -> IO Double
+estimatePi pairCount = do
+  coprimeCount <- countCoprime pairCount
+  let probability = fromIntegral coprimeCount / fromIntegral pairCount
       estimate = sqrt $ 6 / probability
+  putStrLn $ "Estimate: " <> show estimate
   return estimate
 
-makePairs :: RNG -> Int -> IO [(Word64, Word64)]
-makePairs g pairCount = sequence (take pairCount (repeat (makePair g)))
+countCoprime :: Int -> IO Int
+countCoprime 0 = return 0
+countCoprime pairCount = do
+  isCoprime <- liftM2 coprime c_rand c_rand
+  if isCoprime then fmap (+1) (countCoprime (pairCount - 1))
+               else countCoprime (pairCount - 1)
 
-makePair :: RNG -> IO (Word64, Word64)
-makePair g = pairSequence (uniform g, uniform g)
-  where pairSequence = uncurry $ liftM2 (,)
-
-coprime :: Word64 -> Word64 -> Bool
+coprime :: Int -> Int -> Bool
 coprime a b = gcd a b == 1
 

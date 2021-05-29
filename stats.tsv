@@ -13,6 +13,7 @@ Lua (LuaJIT)	18.869
 F#	20.630
 JavaScript (nashorn, JDK 11.0.10)	21.105
 Nim (--opt:speed)	21.437
+Haskell (ghc -O2, using C FFI)	26.978
 Scala 3 (-J-Xss512m)	27.143
 Julia	32.069
 Scheme (Chez, --optimize-level 3)	32.24
@@ -20,7 +21,7 @@ Rust (--release)	34.325
 Python (PyPy 3)	36.495
 D (dmd -O)	39.397
 Go	48.215
-Haskell (ghc -O2, using C FFI)	49.13
+Haskell (ghc -O2)	55.003
 Racket	56.958
 Groovy	59.88
 OCaml (ocamlopt -O2)	59.903
@@ -28,7 +29,6 @@ Scheme (Chicken, csc -O2)	71.22
 Scheme (Guile)	79.23
 Swift (swiftc -O)	81.55
 Scheme (Gerbil, gxc -O -static -exe)	90.38
-Haskell (ghc -O2)	93.76
 Erlang	96.5
 Elixir (MIX_ENV=prod)	97.45
 JavaScript (Rhino 1.7.13)	97.82
