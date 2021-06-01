@@ -15,9 +15,9 @@ let countCoprime (rng: Random) =
 
 let estimatePi (rng: Random) pairCount i =
     let coprimeCount = seq { 0 .. pairCount - 1 } |> Seq.map (fun _ -> countCoprime rng) |> Seq.sum
-    let probability = float coprimeCount / float pairCount
+    let probability = double coprimeCount / double pairCount
     let estimate = Math.Sqrt (6.0 / probability)
-    printfn "Estimate %d: %f" i estimate
+    printfn "Estimate %d: %0.15f" i estimate
     estimate
 
 [<EntryPoint>]
@@ -28,5 +28,5 @@ let main _ =
     let rng = new Random ()
     let estimates = seq { 0 .. estimateCount - 1 } |> Seq.map (estimatePi rng pairCount)
 
-    printfn "Mean: %f" ((Seq.sum estimates) / float estimateCount)
+    printfn "Mean: %0.15f" ((Seq.sum estimates) / double estimateCount)
     0
