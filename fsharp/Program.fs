@@ -7,8 +7,14 @@ let rec gcd a b =
 
 let coprime a b = gcd a b = 1
 
-let estimatePi i (rng: Random) pairCount =
-    let coprimeCount = seq { 0 .. pairCount - 1 } |> Seq.map (fun _ -> if coprime (rng.Next ()) (rng.Next ()) then 1 else 0) |> Seq.sum
+let countCoprime (rng: Random) =
+    if coprime (rng.Next ()) (rng.Next ()) then
+        1
+    else
+        0
+
+let estimatePi (rng: Random) pairCount i =
+    let coprimeCount = seq { 0 .. pairCount - 1 } |> Seq.map (fun _ -> countCoprime rng) |> Seq.sum
     let probability = float coprimeCount / float pairCount
     let estimate = Math.Sqrt (6.0 / probability)
     printfn "Estimate %d: %f" i estimate
@@ -20,7 +26,7 @@ let main _ =
     let estimateCount = 100
 
     let rng = new Random ()
-    let estimates = seq { 0 .. estimateCount - 1 } |> Seq.map (fun i -> estimatePi i rng pairCount)
+    let estimates = seq { 0 .. estimateCount - 1 } |> Seq.map (estimatePi rng pairCount)
 
     printfn "Mean: %f" ((Seq.sum estimates) / float estimateCount)
     0
