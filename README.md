@@ -10,7 +10,9 @@ This repository contains implementations in several programming languages of an 
 
 The formula for approximating &pi; that is used here is
 
-![Approximating pi](./formula.svg)
+<p align="center">
+    <img src="./formula.svg" alt="Approximating pi">
+</p>
 
 where _p_ is the probability that two randomly selected large integers are coprime. Matt Parker explains this formula and gives a proof for it in the video above.
 
