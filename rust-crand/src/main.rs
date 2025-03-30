@@ -1,9 +1,9 @@
-use std::ffi::c_long;
+use std::ffi::c_ulong;
 
 extern "C" {
-    fn rand() -> c_long;
-    fn srand(seed: c_long);
-    fn time(t: *mut c_long) -> c_long;
+    fn rand() -> c_ulong;
+    fn srand(seed: c_ulong);
+    fn time(t: *mut c_ulong) -> c_ulong;
 }
 
 fn main() {
@@ -33,11 +33,11 @@ fn main() {
     println!("Mean: {}", estimate_sum / estimate_count as f64)
 }
 
-fn coprime(a: i64, b: i64) -> bool {
+fn coprime(a: u64, b: u64) -> bool {
     gcd(a, b) == 1
 }
 
-fn gcd(a: i64, b: i64) -> i64 {
+fn gcd(a: u64, b: u64) -> u64 {
     if b == 0 {
         a
     } else {
