@@ -28,9 +28,12 @@
 hs_err_pid*
 
 ### Scala ###
+
 *.tasty
 .bsp
 .scala-build
+.vscode
+.metals
 
 # End of https://www.toptal.com/developers/gitignore/api/scala,java
 
