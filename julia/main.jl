@@ -4,8 +4,6 @@ estimateCount = 100
 coprimeCount = 0
 estimateSum = 0
 
-limit = 1000000000
-
 for i in 1:estimateCount
     for j in 1:pairCount
         if gcd(rand(Int), rand(Int)) == 1
