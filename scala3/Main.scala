@@ -23,12 +23,11 @@ private def estimatePi(i: Int, rng: Random, limit: Int, pairCount: Int): Double 
   estimate
 
 private def countCoprime(rng: Random, limit: Int, pairCount: Int): Int =
-  if pairCount == 0 then
-    0
-  else if coprime(rng.nextInt(limit), rng.nextInt(limit)) then
-    1 + countCoprime(rng, limit, pairCount - 1)
-  else
-    countCoprime(rng, limit, pairCount - 1)
+  LazyList.from(0)
+    .take(pairCount)
+    .map(_ => (rng.nextInt(limit), rng.nextInt(limit)))
+    .filter(coprime)
+    .size
 
 private def coprime(a: Int, b: Int): Boolean = gcd(a, b) == 1
 
