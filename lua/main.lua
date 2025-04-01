@@ -10,7 +10,7 @@ function coprime(a, b)
   return gcd(a, b) == 1
 end
 
-limit = 1000000000
+limit = 4294967296
 
 coprime_count = 0
 
