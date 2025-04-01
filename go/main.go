@@ -19,7 +19,7 @@ func main() {
 
 	for i := 0; i < estimateCount; i++ {
 		for j := 0; j < pairCount; j++ {
-			if coprime(rand.Uint64(), rand.Uint64()) {
+			if coprime(rand.Uint32(), rand.Uint32()) {
 				coprimeCount++
 			}
 		}
@@ -34,11 +34,11 @@ func main() {
 	fmt.Printf("Mean: %.15f\n", estimateSum/float64(estimateCount))
 }
 
-func coprime(a, b uint64) bool {
+func coprime(a, b uint32) bool {
 	return gcd(a, b) == 1
 }
 
-func gcd(a, b uint64) uint64 {
+func gcd(a, b uint32) uint32 {
 	if b == 0 {
 		return a
 	}

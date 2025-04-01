@@ -26,11 +26,11 @@ fn main() {
     println!("Mean: {}", estimate_sum / estimate_count as f64)
 }
 
-fn coprime(a: u64, b: u64) -> bool {
+fn coprime(a: u32, b: u32) -> bool {
     gcd(a, b) == 1
 }
 
-fn gcd(a: u64, b: u64) -> u64 {
+fn gcd(a: u32, b: u32) -> u32 {
     if b == 0 {
         a
     } else {
