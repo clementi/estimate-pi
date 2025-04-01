@@ -21,9 +21,8 @@ private def estimatePi(i: Int, rng: Random, pairCount: Int): Double =
   estimate
 
 private def countCoprime(rng: Random, pairCount: Int): Int =
-  LazyList.from(0)
+  Iterator.continually((rng.nextInt(Int.MaxValue), rng.nextInt(Int.MaxValue)))
     .take(pairCount)
-    .map(_ => (rng.nextInt(Int.MaxValue), rng.nextInt(Int.MaxValue)))
     .filter(coprime)
     .size
 
