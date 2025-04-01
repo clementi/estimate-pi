@@ -12,7 +12,6 @@ import scala.util.Random
     .map(i => estimatePi(i, rng, pairCount))
 
   println(s"Mean: ${estimates.sum / estimateCount}")
-end main
 
 private def estimatePi(i: Int, rng: Random, pairCount: Int): Double =
   val coprimeCount = countCoprime(rng, pairCount)
