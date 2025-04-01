@@ -2,7 +2,6 @@ import math.sqrt
 import scala.util.Random
 
 @main def main: Unit =
-  val limit = 1_000_000_000
   val pairCount = 1_000_000
   val estimateCount = 100
 
@@ -10,22 +9,22 @@ import scala.util.Random
 
   val estimates = LazyList.from(0)
     .take(estimateCount)
-    .map(i => estimatePi(i, rng, limit, pairCount))
+    .map(i => estimatePi(i, rng, pairCount))
 
   println(s"Mean: ${estimates.sum / estimateCount}")
 end main
 
-private def estimatePi(i: Int, rng: Random, limit: Int, pairCount: Int): Double =
-  val coprimeCount = countCoprime(rng, limit, pairCount)
+private def estimatePi(i: Int, rng: Random, pairCount: Int): Double =
+  val coprimeCount = countCoprime(rng, pairCount)
   val probability = coprimeCount.toDouble / pairCount
   val estimate = sqrt(6 / probability)
   println(s"Estimate $i: $estimate")
   estimate
 
-private def countCoprime(rng: Random, limit: Int, pairCount: Int): Int =
+private def countCoprime(rng: Random, pairCount: Int): Int =
   LazyList.from(0)
     .take(pairCount)
-    .map(_ => (rng.nextInt(limit), rng.nextInt(limit)))
+    .map(_ => (rng.nextInt(Int.MaxValue), rng.nextInt(Int.MaxValue)))
     .filter(coprime)
     .size
 
