@@ -1,0 +1,42 @@
+local math = require 'math'
+local os = require 'os'
+
+local function gcd(a: integer, b: integer): integer
+  if b == 0 then
+    return a
+  else
+    return gcd(b, a % b)
+  end
+end
+
+local function coprime(a: integer, b: integer): boolean
+  return gcd(a, b) == 1
+end
+
+local limit: integer = 4294967296
+local coprime_count: integer = 0
+local pair_count: integer = 1000000
+local estimate_count: integer = 100
+local estimate_sum: number = 0.0
+
+math.randomseed(os.time())
+
+for i = 0, estimate_count - 1 do
+  for j = 0, pair_count - 1 do
+    local a: integer = math.random(0, limit - 1)
+    local b: integer = math.random(0, limit - 1)
+    if coprime(a, b) then
+      coprime_count = coprime_count + 1
+    end
+  end
+  local probability: number = coprime_count / pair_count
+  local estimate: number = math.sqrt(6 / probability)
+  estimate_sum = estimate_sum + estimate
+
+  coprime_count = 0
+
+  print(string.format("Estimate %d: %.15f", i, estimate))
+end
+
+local average_estimate: number = estimate_sum / estimate_count
+print(string.format("Mean: %.15f", average_estimate))
