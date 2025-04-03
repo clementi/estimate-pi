@@ -23,7 +23,8 @@ for (var i = 0; i < estimateCount; i++)
 
 Console.WriteLine($"Mean: {estimateSum / estimateCount}");
 
-static IEnumerable<(uint, uint)> RandomPairs(Random rng) {
+static IEnumerable<(uint, uint)> RandomPairs(Random rng)
+{
     while (true)
         yield return ((uint)rng.Next(), (uint)rng.Next());
 }
