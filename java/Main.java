@@ -21,8 +21,6 @@ public class Main {
 
             System.out.printf("Estimate %d: %.15f%n", i, estimate);
             estimateSum += estimate;
-
-            coprimeCount = 0;
         }
 
         System.out.printf("Mean: %.15f%n", estimateSum / estimateCount);
