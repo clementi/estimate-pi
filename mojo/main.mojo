@@ -1,5 +1,6 @@
 import random
 from math import sqrt
+from memory import UnsafePointer
 
 
 def main():
@@ -10,9 +11,16 @@ def main():
 
     for i in range(estimate_count):
         var coprime_count = 0
+        var limit = 2 ** 31 - 1
 
         for _ in range(pair_count):
-            if coprime(random.random_ui64(1, UInt64.MAX), random.random_ui64(1, UInt64.MAX)):
+            var a_ptr = UnsafePointer[Int32].alloc(1)
+            var b_ptr = UnsafePointer[Int32].alloc(1)
+
+            random.randint(a_ptr, 1, 1, limit)
+            random.randint(b_ptr, 1, 1, limit)
+
+            if coprime(a_ptr[], b_ptr[]):
                 coprime_count += 1
         
         var proportion = coprime_count / pair_count
@@ -24,11 +32,11 @@ def main():
     print("Mean: {}".format(estimate_sum / estimate_count))
 
 
-def coprime(a: UInt64, b: UInt64) -> Bool:
+def coprime(a: Int32, b: Int32) -> Bool:
     return gcd(a, b) == 1
 
 
-def gcd(a: UInt64, b: UInt64) -> UInt64:
+def gcd(a: Int32, b: Int32) -> Int32:
     if b == 0:
         return a
     return gcd(b, a % b)
