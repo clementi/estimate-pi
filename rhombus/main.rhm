@@ -1,0 +1,34 @@
+#lang rhombus
+
+import:
+  lib("racket/base.rkt") as rkt
+
+fun gcd(a, b):
+  if b == 0
+  | a
+  | gcd(b, a mod b)
+
+fun coprime(a, b):
+  gcd(a, b) == 1
+
+def limit = 2 ** 31 - 1
+
+def mutable coprime_count = 0
+
+def pair_count = 1000000
+def estimate_count = 100
+
+def mutable estimate_sum = 0.0
+
+for (i in 0..estimate_count):
+  for (j in 0..pair_count):
+    if coprime(rkt.random(1000000000), rkt.random(1000000000))
+    | coprime_count := coprime_count + 1
+    | 0
+  let proportion = coprime_count / pair_count
+  let estimate = rkt.sqrt(6 / proportion)
+  estimate_sum := estimate_sum + estimate
+  coprime_count := 0
+  println(@str{Estimate @(i): @(estimate)})
+
+println(@str{Mean: @(estimate_sum / estimate_count)})
