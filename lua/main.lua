@@ -32,9 +32,9 @@ for i = 0,estimate_count-1,1 do
 
   coprime_count = 0
 
-  print(string.format("Estimate %d: %f", i, estimate))
+  print(string.format("Estimate %d: %.15f", i, estimate))
 end
 
 average_estimate = estimate_sum / estimate_count
 
-print(string.format("Mean: %f", average_estimate))
+print(string.format("Mean: %.15f", average_estimate))
