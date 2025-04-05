@@ -22,7 +22,7 @@ def mutable estimate_sum = 0.0
 
 for (i in 0..estimate_count):
   for (j in 0..pair_count):
-    if coprime(rkt.random(1000000000), rkt.random(1000000000))
+    if coprime(rkt.random(limit), rkt.random(limit))
     | coprime_count := coprime_count + 1
     | 0
   let proportion = coprime_count / pair_count
