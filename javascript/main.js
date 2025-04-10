@@ -17,8 +17,8 @@ function coprime(a, b) {
   return gcd(a, b) == 1;
 }
 
-const limit = 1000000000;
-const pairCount = 1000000;
+const limit = 1_000_000_000;
+const pairCount = 1_000_000;
 const estimateCount = 100;
 
 let coprimeCount = 0;
