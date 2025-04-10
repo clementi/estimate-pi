@@ -2,7 +2,7 @@ import math
 import random
 import itertools
 
-limit: int = 1_000_000_000
+limit: int = 2 ** 31 - 1
 
 def pairs():
     while True:
