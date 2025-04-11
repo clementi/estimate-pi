@@ -1,10 +1,11 @@
 import math
 import random
 import itertools
+from typing import Iterable, Tuple
 
 limit: int = 2 ** 31 - 1
 
-def pairs():
+def pairs() -> Iterable[Tuple[int, int]]:
     while True:
         yield (random.randint(1, limit), random.randint(1, limit))
 
