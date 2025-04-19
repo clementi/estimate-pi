@@ -3,3 +3,6 @@ bin:
 
 clean:
 	rm main
+
+run: bin
+	./main
