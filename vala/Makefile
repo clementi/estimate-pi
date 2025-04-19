@@ -1,5 +1,5 @@
 bin:
-	valac --pkg glib-2.0 -X -lm main.vala
+	valac --pkg glib-2.0 -X -lm main.vala -o main
 
 clean:
 	rm main
