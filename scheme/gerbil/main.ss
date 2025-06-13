@@ -37,7 +37,7 @@
             (make-estimates (- estimate-count 1) pair-count limit))))
 
 (def (main . args)
-  (let ((mean (average-estimates 100 1000000 1000000000)))
+  (let ((mean (average-estimates 100 1000000 (- (expt 2 31) 1))))
     (display "Mean: ")
     (display mean)
     (newline)))
