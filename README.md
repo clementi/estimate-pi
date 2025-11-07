@@ -1,9 +1,5 @@
 # estimate-pi
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Greek_lc_pi.svg" alt="π" width="75"/>
-
-## Introduction
-
 This repository contains implementations in several programming languages of an algorithm to estimate the value of &pi; by using pseudorandom numbers. The algorithm is based on the process given by [Matt Parker of Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
