@@ -9,10 +9,9 @@ This repository contains implementations in several programming languages of an 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
 
 The formula for approximating &pi; that is used here is
-
-<p align="center">
-    <img src="./formula.svg" alt="Approximating pi">
-</p>
+$$
+\pi = \sqrt{\frac{6}{p}}
+$$
 
 where _p_ is the probability that two randomly selected large integers are coprime. Matt Parker explains this formula and gives a proof for it in the video above.
 
