@@ -6,9 +6,9 @@ This repository contains implementations in several programming languages of an 
 
 The formula for approximating &pi; that is used here is
 
-$$
-\pi = \sqrt{\frac{6}{p}} \, ,
-$$
+```math
+\pi = \sqrt{\frac{6}{p}} \: ,
+```
 
 where $p$ is the probability that two randomly selected large integers are coprime. Matt Parker explains this formula and gives a proof for it in the video above.
 
