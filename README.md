@@ -9,6 +9,7 @@ This repository contains implementations in several programming languages of an 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
 
 The formula for approximating &pi; that is used here is
+
 $$
 \pi = \sqrt{\frac{6}{p}}
 $$
