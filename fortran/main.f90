@@ -35,7 +35,6 @@ program estimate
 end program estimate
 
 function rand_int() result(n)
-    use, intrinsic :: iso_fortran_env, only: int32
     implicit none
 
     real :: r
