@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "asc main.ts -o main.wasm --lib node_modules/@assemblyscript/wasi-shim/assembly --use \"ASC_WASI=1\" --use \"abort=wasi_abort\" --use \"trace=wasi_trace\" --use \"seed=wasi_seed\" --use \"console=wasi_console\" --exportStart _start -O3",
+    "start": "npm run build && wasmer run main.wasm",
+    "clean": "rm -f main.wasm"
+  },
+  "devDependencies": {
+    "@assemblyscript/wasi-shim": "^0.1.0"
+  }
+}
