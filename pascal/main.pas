@@ -2,7 +2,7 @@ program EstimatePi;
 
 uses Sysutils;
 
-function gcd(const a, b	: UInt32): UInt32;
+function gcd(const a, b : UInt32): UInt32;
 begin
    if b = 0 then
       Result := a
@@ -21,14 +21,14 @@ begin
 end;
 
 var
-   pairCount	 : UInt32;
+   pairCount     : UInt32;
    estimateCount : UInt32;
-   estimateSum	 : Real;
-   coprimeCount	 : UInt32;
-   proportion	 : Real;
-   estimate	 : Real;
-   i		 : UInt32;
-   j		 : UInt32;
+   estimateSum   : Real;
+   coprimeCount  : UInt32;
+   proportion    : Real;
+   estimate      : Real;
+   i             : UInt32;
+   j             : UInt32;
 begin
    Randomize;
    pairCount := 1000000;
@@ -41,8 +41,8 @@ begin
       coprimeCount := 0;
       for j := 1 to pairCount do
       begin
-	 if coprime(randUInt32(), randUInt32()) then
-	    coprimeCount := coprimeCount + 1;
+         if coprime(randUInt32(), randUInt32()) then
+            coprimeCount := coprimeCount + 1;
       end;
       proportion := Real(coprimeCount) / Real(pairCount);
       estimate := Sqrt(6.0 / Real(proportion));
