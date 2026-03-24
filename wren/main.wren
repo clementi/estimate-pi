@@ -31,4 +31,3 @@ for (i in 0...estimateCount) {
 }
 
 System.print("Mean: %(estimateSum / estimateCount)")
-
