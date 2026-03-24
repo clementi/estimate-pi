@@ -1,12 +1,12 @@
 USING: io locals math math.functions math.parser random ;
 IN: estimate-pi
 
-: coprime? ( a b -- ? ) gcd 1 = ;
+: coprime? ( a b -- ? ) gcd swap drop 1 = ;
 
 :: count-coprime ( pair-count limit -- n )
     0 :> count!
     pair-count [
-        limit random-integer limit random-integer coprime?
+        limit random limit random coprime?
         [ count 1 + count! ] when
     ] times
     count ;
