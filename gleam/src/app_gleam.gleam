@@ -5,7 +5,7 @@ import gleam/result
 
 pub fn main() -> Nil {
   let pair_count = 1_000_000
-  let estimate_count = 3
+  let estimate_count = 100
   let limit = 1_000_000_000
 
   let estimate_sum = sum_estimates(estimate_count, pair_count, limit)
@@ -26,21 +26,21 @@ fn sum_estimates(estimate_count: Int, pair_count: Int, limit: Int) -> Float {
   }
 }
 
-fn estimate_pi(estimate_count: Int, limit: Int) -> Float {
-  let coprime_count = count_coprime(estimate_count, limit)
-  let proportion = int.to_float(coprime_count) /. int.to_float(estimate_count)
+fn estimate_pi(pair_count: Int, limit: Int) -> Float {
+  let coprime_count = count_coprime(pair_count, limit)
+  let proportion = int.to_float(coprime_count) /. int.to_float(pair_count)
   float.square_root(6.0 /. proportion) |> result.unwrap(0.0)
 }
 
-fn count_coprime(count: Int, limit: Int) -> Int {
-  case count {
+fn count_coprime(pair_count: Int, limit: Int) -> Int {
+  case pair_count {
     0 -> 0
     _ -> {
       case coprime(int.random(limit) + 1, int.random(limit) + 1) {
         True -> 1
         False -> 0
       }
-      + count_coprime(count - 1, limit)
+      + count_coprime(pair_count - 1, limit)
     }
   }
 }
