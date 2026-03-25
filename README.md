@@ -52,3 +52,6 @@ As would be expected, there is a wide variance of performance with different lan
 
 [![Performance stats](https://docs.google.com/spreadsheets/d/e/2PACX-1vR1SyRMrdmPEf6gXgfvdEXJqs6-sqIgpq3z3R6HXxoS10OLPprLmWWx8HZwLTrqLURx6pnthEDD45HB/pubchart?oid=1935298427&format=image)](https://docs.google.com/spreadsheets/d/1xdHP06eoPLs7hgXIyKkfdL_ETco1unpjLdVDoXO3nuY/edit?usp=sharing)
 
+## AI Note
+
+The vast majority of these implementations were done by me without the assistance of any LLM. Some of them---namely, Ada, Factor, Forth, Common Lisp, TypeScript, and Janet---were done by Claude Code as an exercise in using AI-assisted tools. Claude's implementations in Factor and Forth were faulty.
