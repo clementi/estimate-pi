@@ -13,6 +13,7 @@ function (@main)(args)
 
             let probability = coprimeCount / pairCount,
                 estimate = sqrt(6 / probability)
+
                 println("Estimate ", i, ": ", estimate)
 
                 estimateSum += estimate
