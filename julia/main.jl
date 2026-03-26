@@ -11,8 +11,8 @@ function (@main)(args)
                 end
             end
 
-            let probability = coprimeCount / pairCount,
-                estimate = sqrt(6 / probability)
+            let proportion = coprimeCount / pairCount,
+                estimate = sqrt(6 / proportion)
 
                 println("Estimate ", i, ": ", estimate)
 
