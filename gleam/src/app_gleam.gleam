@@ -61,6 +61,6 @@ fn coprime(a: Int, b: Int) -> Bool {
 fn gcd(a: Int, b: Int) -> Int {
   case b {
     0 -> a
-    c -> gcd(c, a % c)
+    _ -> gcd(b, a % b)
   }
 }
