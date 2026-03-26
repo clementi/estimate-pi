@@ -41,13 +41,17 @@ fn count_coprime(pair_count: Int, limit: Int, acc: Int) -> Int {
   case pair_count {
     0 -> acc
     _ -> {
-      let to_add = case coprime(int.random(limit) + 1, int.random(limit) + 1) {
+      let to_add = case coprime(rand_int(limit), rand_int(limit)) {
         True -> 1
         False -> 0
       }
       count_coprime(pair_count - 1, limit, to_add + acc)
     }
   }
+}
+
+fn rand_int(limit: Int) -> Int {
+  int.random(limit) + 1
 }
 
 fn coprime(a: Int, b: Int) -> Bool {
