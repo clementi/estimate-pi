@@ -3,32 +3,27 @@
 (define (coprime? a b)
   (= (gcd a b) 1))
 
-(define estimate-count 100)
-(define pair-count 1000000)
-
-(define limit (- (expt 2 31) 1))
-
-(define (count-coprime trials)
+(define (count-coprime pair-count limit)
   (for/fold ([coprime-count 0])
-            ([i (range 0 trials)])
+            ([i (range 0 pair-count)])
     (if (coprime? (random limit) (random limit))
         (add1 coprime-count)
         coprime-count)))
 
-(define (estimate-pi trial)
-  (let* ([proportion (/ (count-coprime pair-count) pair-count)]
+(define (estimate-pi trial pair-count limit)
+  (let* ([proportion (/ (count-coprime pair-count limit) pair-count)]
          [estimate (sqrt (/ 6 proportion))])
     (printf "Estimate ~a: ~a\n" trial estimate)
     estimate))
 
-(define (sum-estimates)
+(define (sum-estimates estimate-count pair-count limit)
   (for/fold ([estimate-sum 0])
             ([trial (range 0 estimate-count)])
-    (+ estimate-sum (estimate-pi trial))))
+    (+ estimate-sum (estimate-pi trial pair-count limit))))
 
-(define (make-estimates)
-  (let* ([estimate-sum (sum-estimates)]
+(define (make-estimates estimate-count pair-count limit)
+  (let* ([estimate-sum (sum-estimates estimate-count pair-count limit)]
          [mean-estimate (/ estimate-sum estimate-count)])
     (printf "Mean: ~a\n" mean-estimate)))
 
-(make-estimates)
+(make-estimates 100 1000000 (- (expt 2 31) 1))
