@@ -1,5 +1,7 @@
 #lang racket
 
+;; This implementation makes use of for/fold instead of recursion and lists.
+
 (define (coprime? a b)
   (= (gcd a b) 1))
 

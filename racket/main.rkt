@@ -1,5 +1,7 @@
 #lang racket
 
+;; This implementation makes use of recursion and list-building.
+
 (define (make-pairs pair-count limit)
   (if (zero? pair-count)
       '()
