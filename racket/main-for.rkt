@@ -23,9 +23,9 @@
             ([trial (range 0 estimate-count)])
     (+ estimate-sum (estimate-pi trial pair-count limit))))
 
-(define (make-estimates estimate-count pair-count limit)
+(define (make-mean-estimate estimate-count pair-count limit)
   (let* ([estimate-sum (sum-estimates estimate-count pair-count limit)]
          [mean-estimate (/ estimate-sum estimate-count)])
     (printf "Mean: ~a\n" mean-estimate)))
 
-(make-estimates 100 1000000 (- (expt 2 31) 1))
+(make-mean-estimate 100 1000000 (- (expt 2 31) 1))
