@@ -25,7 +25,7 @@
 
 (for i 0 estimate-count
   (let [coprime-count (count-coprime)
-        probability (/ (float coprime-count) pair-count)
+        probability (/ coprime-count pair-count)
         estimate (math/sqrt (/ 6 probability))]
     (print (string "Estimate " i ": " estimate))
     (set estimate-sum (+ estimate-sum estimate))))
