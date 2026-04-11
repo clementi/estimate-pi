@@ -8,7 +8,7 @@ pub fn main() -> Nil {
   let estimate_count = 100
   let limit = 1_000_000_000
 
-  let estimate_sum = sum_estimates(estimate_count, pair_count, limit, 0.0)
+  let estimate_sum = sum_estimates(0, estimate_count, pair_count, limit, 0.0)
 
   io.println(
     "Mean: " <> float.to_string(estimate_sum /. int.to_float(estimate_count)),
@@ -16,6 +16,7 @@ pub fn main() -> Nil {
 }
 
 fn sum_estimates(
+  i: Int,
   estimate_count: Int,
   pair_count: Int,
   limit: Int,
@@ -25,8 +26,16 @@ fn sum_estimates(
     0 -> acc
     _ -> {
       let estimate = estimate_pi(pair_count, limit)
-      io.println("Estimate: " <> float.to_string(estimate))
-      sum_estimates(estimate_count - 1, pair_count, limit, estimate +. acc)
+      io.println(
+        "Estimate " <> int.to_string(i) <> ": " <> float.to_string(estimate),
+      )
+      sum_estimates(
+        i + 1,
+        estimate_count - 1,
+        pair_count,
+        limit,
+        estimate +. acc,
+      )
     }
   }
 }
