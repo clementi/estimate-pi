@@ -12,9 +12,6 @@ fun gcd(a: int, b: int): div int
 fun coprime(a: int, b: int): div bool
   gcd(a, b) == 1
 
-fun nextInt(a: int, c: int, m: int, seed: int): int
-  (a * seed + c) % m
-
 fun main()
   val pairCount = 1_000_000
   val estimateCount = 100
