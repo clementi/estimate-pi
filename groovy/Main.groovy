@@ -3,7 +3,6 @@ int gcd(int a, int b) {
     else gcd(b, a % b)
 }
 
-limit = 1000000000
 pairCount = 1000000
 estimateCount = 100
 
@@ -15,7 +14,7 @@ rng = new Random()
 
 estimateCount.times {
     pairCount.times {
-        if (gcd(rng.nextInt(limit), rng.nextInt(limit)) == 1)
+        if (gcd(rng.nextInt(Integer.MAX_VALUE), rng.nextInt(Integer.MAX_VALUE)) == 1)
             coprimeCount++
     }
 
