@@ -13,8 +13,8 @@ let coprime a b = gcd a b = 1
 let estimatePi pairCount =
   let pairs = createPairs pairCount in
   let coprimeCount = List.length (List.filter (fun pair -> let a, b = pair in coprime a b) pairs) in
-  let probability = (float coprimeCount) /. (float pairCount)
-  in Float.sqrt (6.0 /. probability)
+  let proportion = (float coprimeCount) /. (float pairCount)
+  in Float.sqrt (6.0 /. proportion)
 
 let estimateAndShow pairCount i =
   let estimate = estimatePi pairCount in
