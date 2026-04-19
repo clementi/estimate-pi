@@ -18,7 +18,7 @@ let estimatePi pairCount =
 
 let estimateAndShow pairCount i =
   let estimate = estimatePi pairCount in
-  let _ = Printf.printf ("Estimate %d: %f\n%!") i estimate
+  let _ = Printf.printf ("Estimate %d: %.15f\n%!") i estimate
   in estimate
 
 let rec makeEstimates estimateCount pairCount =
@@ -35,6 +35,6 @@ let main () =
   let pairCount = 1000000 in
   let estimateCount = 99 in
   let estimate = averageEstimate estimateCount pairCount
-  in Printf.printf ("Mean: %f\n") estimate
+  in Printf.printf ("Mean: %.15f\n") estimate
 
 let _ = main ()
