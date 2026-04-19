@@ -1,4 +1,4 @@
-open Random
+open Random (* SML/NJ *)
 
 val rng = Random.rand (1701, 1371)
 
