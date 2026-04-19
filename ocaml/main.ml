@@ -10,8 +10,8 @@ let randInt () = Random.int 1000000000
 let rec countCoprime pairCount acc =
   match pairCount with
   | 0 -> acc
-  | _ -> let count = if coprime (randInt ()) (randInt ()) then 1 else 0 in
-    countCoprime (pairCount - 1) (count + acc)
+  | _ -> let count = if coprime (randInt ()) (randInt ()) then 1 else 0
+         in countCoprime (pairCount - 1) (count + acc)
 
 let rec estimatePi pairCount =
   let coprimeCount = countCoprime pairCount 0 in
