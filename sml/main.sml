@@ -45,10 +45,12 @@ fun estimatePi pairCount =
 
 fun sumEstimates(i, estimateCount, pairCount, acc) =
   if estimateCount = 0 then acc
-  else let
-    val estimate = estimatePi(pairCount)
-    val _ = print("Estimate " ^ Int.toString(i) ^ ": " ^ Real.toString(estimate) ^ "\n")
-      in sumEstimates(i + 1, estimateCount - 1, pairCount, estimate + acc)
+  else
+    let
+      val estimate = estimatePi(pairCount)
+      val _ = print("Estimate " ^ Int.toString(i) ^ ": " ^ Real.toString(estimate) ^ "\n")
+    in
+      sumEstimates(i + 1, estimateCount - 1, pairCount, estimate + acc)
     end
 
 val estimateCount = 100
