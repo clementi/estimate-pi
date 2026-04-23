@@ -1,17 +1,17 @@
 structure LCG = struct
-    val m = valOf (IntInf.fromString "2147483647")
-    val a = IntInf.fromInt 16807
-    val c = IntInf.fromInt 0
+  val m = valOf (IntInf.fromString "2147483647")
+  val a = IntInf.fromInt 16807
+  val c = IntInf.fromInt 0
 
-    val seed = ref (IntInf.fromInt 42)
+  val seed = ref (IntInf.fromInt 42)
 
-    fun next () : Int32.int =
-      let
-        val nextVal = (!seed * a + c) mod m
-      in
-        seed := nextVal;
-        Int32.fromLarge (IntInf.toLarge nextVal)
-      end
+  fun next () : Int32.int =
+    let
+      val nextVal = (!seed * a + c) mod m
+    in
+      seed := nextVal;
+      Int32.fromLarge (IntInf.toLarge nextVal)
+    end
 
   fun setSeed n = seed := IntInf.fromInt n
 end
