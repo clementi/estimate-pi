@@ -1,13 +1,25 @@
-open Random (* SML/NJ *)
+structure LCG = struct
+    val m = valOf (IntInf.fromString "2147483647")
+    val a = IntInf.fromInt 16807
+    val c = IntInf.fromInt 0
 
-val rng = Random.rand (1701, 1371)
+    val seed = ref (IntInf.fromInt 42)
 
-val limit = 1000000000
+    fun next () : Int32.int =
+      let
+        val nextVal = (!seed * a + c) mod m
+      in
+        seed := nextVal;
+        Int32.fromLarge (IntInf.toLarge nextVal)
+      end
 
-fun gcd(a, 0) = a
-  | gcd(a, b) = gcd (b, a mod b)
+  fun setSeed n = seed := IntInf.fromInt n
+end
 
-fun coprime(a, b) =
+fun gcd(a: Int32.int, 0) = a
+  | gcd(a: Int32.int, b: Int32.int) = gcd (b, a mod b)
+
+fun coprime(a: Int32.int, b: Int32.int) =
   gcd(a, b) = 1
 
 fun babsqrt(x, guess) =
@@ -18,7 +30,7 @@ fun babsqrt(x, guess) =
 
 fun countCoprime(pairCount, acc) =
   if pairCount = 0 then acc
-  else let val count = if coprime((Random.randInt rng) mod limit, (Random.randInt rng) mod limit) then 1 else 0
+  else let val count = if coprime(LCG.next (), LCG.next ()) then 1 else 0
     in
       countCoprime(pairCount - 1, acc + count)
     end
