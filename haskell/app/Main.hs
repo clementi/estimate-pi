@@ -1,44 +1,49 @@
-module Main where
+{-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE NumericUnderscores #-}
 
-import Control.Monad ( liftM2 )
-import Data.Time.Clock.POSIX ( getPOSIXTime )
+module Main (main) where
 
-import Foreign
-import Foreign.C.Types
-
-foreign import ccall unsafe "stdlib.h srand" c_srand :: Int -> IO ()
-foreign import ccall unsafe "stdlib.h rand" c_rand :: IO Int
+import Data.Int (Int32)
+import Data.Bits (shiftL, shiftR, xor)
+import Random.Xorshift.Int32 (Xorshift32 (Xorshift32), newXorshift32)
+import Text.Printf
 
 main :: IO ()
 main = do
-  let pairCount = 1000000
+  let pairCount = 1_000_000
       estimateCount = 100
-  millis <- fmap round getPOSIXTime
-  _ <- c_srand millis
-  estimatesSum <- sumEstimates estimateCount pairCount
-  putStrLn $ "Mean: " <> show (estimatesSum / fromIntegral estimateCount)
+  g0 <- newXorshift32
+  estimateSum <- sumEstimates 0 estimateCount pairCount g0 0.0
+  printf "Mean: %f\n" (estimateSum / fromIntegral estimateCount)
+  
+sumEstimates :: Int32 -> Int32 -> Int32 -> Xorshift32 -> Double -> IO Double
+sumEstimates _ 0 _ _ !acc = return acc
+sumEstimates i estimateCount pairCount g !acc = do
+  let (estimate, g1) = estimatePi pairCount g
+      !acc' = acc + estimate
+  printf "Estimate %d: %f\n" i estimate
+  sumEstimates (i + 1) (estimateCount - 1) pairCount g1 acc'
 
-sumEstimates :: Int -> Int -> IO Double
-sumEstimates 0 _ = return 0.0
-sumEstimates estimateCount pairCount = do
-  estimate <- estimatePi pairCount
-  fmap (+ estimate) (sumEstimates (estimateCount - 1) pairCount)
+estimatePi :: Int32 -> Xorshift32 -> (Double, Xorshift32)
+estimatePi pairCount g =
+  let (coprimeCount, g1) = countCoprime pairCount 0 g
+      proportion = fromIntegral coprimeCount / fromIntegral pairCount
+   in (sqrt (6.0 / proportion), g1)
 
-estimatePi :: Int -> IO Double
-estimatePi pairCount = do
-  coprimeCount <- countCoprime pairCount
-  let probability = fromIntegral coprimeCount / fromIntegral pairCount
-      estimate = sqrt $ 6 / probability
-  putStrLn $ "Estimate: " <> show estimate
-  return estimate
+countCoprime :: Int32 -> Int32 -> Xorshift32 -> (Int32, Xorshift32)
+countCoprime 0 !acc g = (acc, g)
+countCoprime pairCount !acc g =
+  let (n1, g1) = nextInt32 g
+      (n2, g2) = nextInt32 g1
+      !acc' = acc + if coprime n1 n2 then 1 else 0
+   in countCoprime (pairCount - 1) acc' g2
 
-countCoprime :: Int -> IO Int
-countCoprime 0 = return 0
-countCoprime pairCount = do
-  isCoprime <- liftM2 coprime c_rand c_rand
-  if isCoprime then fmap (+1) (countCoprime (pairCount - 1))
-               else countCoprime (pairCount - 1)
+nextInt32 :: Xorshift32 -> (Int32, Xorshift32)
+nextInt32 (Xorshift32 x0) =
+  let x1 = x0 `xor` (x0 `shiftL` 13)
+      x2 = x1 `xor` (x1 `shiftR` 17)
+      x3 = x2 `xor` (x2 `shiftL` 5)
+   in (x3, Xorshift32 x3)
 
-coprime :: Int -> Int -> Bool
+coprime :: Int32 -> Int32 -> Bool
 coprime a b = gcd a b == 1
-

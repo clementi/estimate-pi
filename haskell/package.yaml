@@ -1,14 +1,14 @@
 name:                haskell
 version:             0.1.0.0
 github:              "githubuser/haskell"
-license:             BSD3
+license:             BSD-3-Clause
 author:              "Author name here"
 maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+copyright:           "2026 Author name here"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
+- CHANGELOG.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -21,8 +21,20 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-- mwc-random == 0.14.0.0
-- time == 1.9.3
+- xorshift == 2.0.1
+- random
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+- -O2
 
 library:
   source-dirs: src
