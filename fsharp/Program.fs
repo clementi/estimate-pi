@@ -14,7 +14,7 @@ let rec countCoprime (rng: Random) pairCount acc =
         let acc' = if coprime (rng.Next ()) (rng.Next ()) then acc + 1 else acc
         countCoprime rng (pairCount - 1) acc'
 
-let estimatePi rng pairCount i =
+let estimatePi rng pairCount =
     let coprimeCount = countCoprime rng pairCount 0
     let probability = double coprimeCount / double pairCount
     Math.Sqrt (6.0 / probability)
@@ -23,7 +23,7 @@ let rec sumEstimates rng i estimateCount pairCount acc =
     if estimateCount = 0 then
         acc
     else
-        let estimate = estimatePi rng pairCount i
+        let estimate = estimatePi rng pairCount
         printfn "Estimate %d: %0.15f" i estimate
         sumEstimates rng (i + 1) (estimateCount - 1) pairCount (acc + estimate)
 
