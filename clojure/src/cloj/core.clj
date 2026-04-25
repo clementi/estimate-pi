@@ -14,10 +14,13 @@
 (defn coprime? [a b]
   (= (gcd a b) 1))
 
+(defn rand-int32 []
+  (rand-int Integer/MAX_VALUE))
+
 (defn count-coprime [pair-count acc]
   (if (zero? pair-count)
     acc
-    (let [acc' (incif acc (coprime? (rand-int Integer/MAX_VALUE) (rand-int Integer/MAX_VALUE)))]
+    (let [acc' (incif acc (coprime? (rand-int32) (rand-int32)))]
       (count-coprime (dec pair-count) acc'))))
 
 (defn estimate-pi [pair-count]
