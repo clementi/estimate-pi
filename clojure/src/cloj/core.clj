@@ -1,6 +1,11 @@
 (ns cloj.core
   (:gen-class))
 
+(defn incif [n predicate]
+  (if predicate
+    (inc n)
+    n))
+
 (defn gcd [a b]
   (if (zero? b)
     a
@@ -12,9 +17,7 @@
 (defn count-coprime [pair-count acc]
   (if (zero? pair-count)
     acc
-    (let [acc' (+ acc (if (coprime? (rand-int Integer/MAX_VALUE) (rand-int Integer/MAX_VALUE))
-                        1
-                        0))]
+    (let [acc' (incif acc (coprime? (rand-int Integer/MAX_VALUE) (rand-int Integer/MAX_VALUE)))]
       (count-coprime (dec pair-count) acc'))))
 
 (defn estimate-pi [pair-count]
