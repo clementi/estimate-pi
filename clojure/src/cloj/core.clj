@@ -1,42 +1,37 @@
 (ns cloj.core
   (:gen-class))
 
-(defn make-pair [rng limit]
-  [(.nextInt rng limit) (.nextInt rng limit)])
-
-(defn make-pairs [rng pair-count limit]
-  (if (zero? pair-count)
-    '()
-    (cons (make-pair rng limit)
-          (make-pairs rng (dec pair-count) limit))))
-
 (defn gcd [a b]
   (if (zero? b)
     a
     (gcd b (mod a b))))
 
-(defn coprime? [[a b]]
+(defn coprime? [a b]
   (= (gcd a b) 1))
 
-(defn estimate-pi [rng pair-count limit]
-  (let [pairs (make-pairs rng pair-count limit)
-        coprime-count (count (filter coprime? pairs))
-        probability (/ coprime-count pair-count)
-        estimate (Math/sqrt (/ 6 probability))]
-    (println "Estimate:" estimate)
-    estimate))
+(defn count-coprime [pair-count acc]
+  (if (zero? pair-count)
+    acc
+    (let [acc' (+ acc (if (coprime? (rand-int Integer/MAX_VALUE) (rand-int Integer/MAX_VALUE))
+                        1
+                        0))]
+      (count-coprime (dec pair-count) acc'))))
 
-(defn make-estimates [rng estimate-count pair-count limit]
+(defn estimate-pi [pair-count]
+  (let [coprime-count (count-coprime pair-count 0)
+        proportion (/ coprime-count pair-count)]
+    (Math/sqrt (/ 6 proportion))))
+
+(defn sum-estimates [i estimate-count pair-count acc]
   (if (zero? estimate-count)
-    '()
-    (cons (estimate-pi rng pair-count limit)
-          (make-estimates rng (dec estimate-count) pair-count limit))))
-
-(defn average-estimate [rng estimate-count pair-count limit]
-  (let [estimates (make-estimates rng estimate-count pair-count limit)]
-    (/ (apply + estimates) (count estimates))))
+    acc
+    (let [estimate (estimate-pi pair-count)]
+      (printf "Estimate %d: %.15f\n" i estimate)
+      (flush)
+      (sum-estimates (inc i) (dec estimate-count) pair-count (+ estimate acc)))))
 
 (defn -main []
-  (let [rng (new java.util.Random)]
-    (println "Mean:" (average-estimate rng 100 1000000 1000000000))))
-
+  (let [pair-count 1000000
+        estimate-count 100
+        estimate-sum (sum-estimates 0 estimate-count pair-count 0.0)]
+    (println "Mean:" (/ estimate-sum estimate-count))))
