@@ -1,13 +1,13 @@
 void main()
 {
     import std.stdio : writefln;
-    import std.random : Mt19937_64, unpredictableSeed;
+    import std.random : Xorshift, unpredictableSeed;
     import std.math : sqrt;
     import std.numeric : gcd;
     import std.conv : to;
 
-    Mt19937_64 gen;
-    gen.seed(unpredictableSeed!ulong);
+    Xorshift gen;
+    gen.seed(unpredictableSeed!uint);
 
     int pairCount = 1_000_000;
     int estimateCount = 100;
@@ -15,8 +15,8 @@ void main()
 
     double estimateSum = 0.0;
 
-    ulong a;
-    ulong b;
+    uint a;
+    uint b;
 
     for (int i = 0; i < estimateCount; i++) {
         for (int j = 0; j < pairCount; j++) {
