@@ -1,18 +1,29 @@
-use rand::prelude::*;
+struct Xorshift32 {
+    a: u32
+}
+impl Xorshift32 {
+    fn next(&mut self) -> u32 {
+        let mut x = self.a;
+        x ^= x << 13;
+        x ^= x >> 17;
+        x ^= x << 5;
+        self.a = x;
+        x
+    }
+}
 
 fn main() {
     let pair_count = 1_000_000;
     let estimate_count = 100;
 
     let mut coprime_count = 0;
-
     let mut estimate_sum = 0.0;
 
-    let mut rng = rand::thread_rng();
+    let mut rng = Xorshift32 { a: 1701 };
 
     for i in 0..estimate_count {
         for _ in 0..pair_count {
-            if coprime(rng.gen(), rng.gen()) {
+            if coprime(rng.next(), rng.next()) {
                 coprime_count += 1;
             }
         }
