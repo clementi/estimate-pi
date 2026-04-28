@@ -1,5 +1,3 @@
-import java.util.Random;
-
 class Xorshift32 {
     private int state;
 
