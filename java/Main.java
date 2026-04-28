@@ -1,5 +1,25 @@
 import java.util.Random;
 
+class Xorshift32 {
+    private int state;
+
+    public Xorshift32(int state) {
+        this.state = state;
+    }
+
+    public Xorshift32() {
+        this((int) System.currentTimeMillis());
+    }
+
+    public int next() {
+        var x = this.state;
+        x ^= x >> 13;
+        x ^= x << 17;
+        x ^= x >> 5;
+        return this.state = x;
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
         var pairCount = 1_000_000;
@@ -7,12 +27,12 @@ public class Main {
 
         var estimateSum = 0.0;
 
-        var rng = new Random();
+        var rng = new Xorshift32();
 
         for (var i = 0; i < estimateCount; i++) {
             var coprimeCount = 0;
             for (var j = 0; j < pairCount; j++) {
-                if (coprime(rng.nextInt(Integer.MAX_VALUE), rng.nextInt(Integer.MAX_VALUE))) {
+                if (coprime(rng.next(), rng.next())) {
                     coprimeCount++;
                 }
             }
