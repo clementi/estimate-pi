@@ -24,8 +24,8 @@ for i in 0 .. estimateCount - 1:
     if coprime(r.rand(limit) + 1, r.rand(limit) + 1):
       coprimeCount += 1
 
-  var probability = coprimeCount / pairCount
-  var estimate = sqrt(6.0 / probability)
+  var proportion = coprimeCount / pairCount
+  var estimate = sqrt(6.0 / proportion)
   echo fmt"Estimate {i}: {estimate}"
   estimateSum += estimate
   coprimeCount = 0
