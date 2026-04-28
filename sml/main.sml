@@ -47,7 +47,7 @@ fun estimatePi pairCount =
     val coprimeCount = countCoprime (pairCount, 0)
     val proportion = Real.fromInt coprimeCount / Real.fromInt pairCount
   in
-    babsqrt (6.0 / proportion, 0.608)
+    babsqrt (6.0 / proportion, 0.608) (* 0.608 is very close to what sqrt(6 / proportion) ought to be *)
   end
 
 fun sumEstimates (i, estimateCount, pairCount, acc) =
