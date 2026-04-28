@@ -1,27 +1,30 @@
-structure LCG = struct
-  val m = valOf (IntInf.fromString "2147483647")
-  val a = IntInf.fromInt 16807
-  val c = IntInf.fromInt 0
+structure Xorshift32 = struct
+  val seed = ref (0w42 : Word.word)
 
-  val seed = ref (IntInf.fromInt 42)
+  fun scrubSeed s =
+    if s = 0w0 then 0w1 else s
 
-  fun next () : Int32.int =
+  fun next () : Word.word =
     let
-      val nextVal = (!seed * a + c) mod m
+      val x0 = !seed
+      val x1 = Word.xorb (x0, Word.<< (x0, 0w13))
+      val x2 = Word.xorb (x1, Word.>> (x1, 0w17))
+      val x3 = Word.xorb (x2, Word.<< (x2, 0w5))
+      val nextVal = scrubSeed x3
     in
       seed := nextVal;
-      Int32.fromLarge (IntInf.toLarge nextVal)
+      nextVal
     end
 
   fun setSeed n =
-    seed := IntInf.fromInt n
+    seed := scrubSeed (Word.fromInt n)
 end
 
-fun gcd (a : Int32.int, 0) = a
-  | gcd (a : Int32.int, b : Int32.int) = gcd (b, a mod b)
+fun gcd (a : Word.word, 0w0) = a
+  | gcd (a : Word.word, b : Word.word) = gcd (b, Word.mod (a, b))
 
-fun coprime (a : Int32.int, b : Int32.int) =
-  gcd (a, b) = 1
+fun coprime (a : Word.word, b : Word.word) =
+  gcd (a, b) = 0w1
 
 fun babsqrt (x, guess) =
   if Real.abs (x - guess * guess) < x / 1000000.0 then
@@ -34,7 +37,7 @@ fun countCoprime (pairCount, acc) =
     acc
   else
     let
-      val count = if coprime (LCG.next (), LCG.next ()) then 1 else 0
+      val count = if coprime (Xorshift32.next (), Xorshift32.next ()) then 1 else 0
     in
       countCoprime (pairCount - 1, acc + count)
     end
