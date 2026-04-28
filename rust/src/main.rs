@@ -1,6 +1,7 @@
 struct Xorshift32 {
-    a: u32
+    a: u32,
 }
+
 impl Xorshift32 {
     fn next(&mut self) -> u32 {
         let mut x = self.a;
