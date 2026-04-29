@@ -1,20 +1,25 @@
 # estimate-pi
 
-This repository contains implementations in several programming languages of a Monte Carlo algorithm to estimate the value of &pi; by using pseudorandom numbers. The algorithm is based on the process given by [Matt Parker of Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
+This repository contains implementations in several programming languages of a Monte Carlo algorithm to estimate the value of $\pi$ by using pseudorandom numbers. The algorithm is based on the process given by [Matt Parker of Standup Maths](https://www.youtube.com/watch?v=RZBhSi_PwHU).
 
 [![Matt Parker](https://raw.githubusercontent.com/clementi/estimate-pi/master/matt-parker.png)](https://www.youtube.com/watch?v=RZBhSi_PwHU)
 
-The formula for approximating &pi; that is used here is
+The formula for approximating $\pi$ that is used here is
 
 ```math
-\pi \approx \sqrt{\frac{6}{p}} \: ,
+\pi = \sqrt{\frac{6}{p}} \: ,
 ```
 
-where $p$ is the probability that two randomly selected large integers are coprime. Matt Parker explains this formula and gives a proof for it in the video above.
+where $p$ is the probability that two randomly selected large integers are coprime. (Our estimate is approximate because we are limited to finite-length integers (32 bits) and we make a finite sample of integer pairs.) Thus the probability of two randomly selected large integers being coprime is the [constant](https://oeis.org/A059956)
+
+```math
+\frac{6}{\pi^2} = 0.6079271019\dots.
+```
+Matt Parker explains the formula and gives a proof for it in the video above.
 
 ## The Algorithm
 
-Each example computes the average of 100 estimates of &pi;. The estimation algorithm comes in two forms: an iterative form and a recursive form (for languages like Haskell and Gleam).
+Each example computes the average of 100 estimates of $\pi$. The estimation algorithm comes in two forms: an iterative form and a recursive form (for languages like Haskell and Gleam).
 
 ### Iterative Version
 
