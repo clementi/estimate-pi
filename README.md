@@ -13,7 +13,7 @@ The formula for approximating $\pi$ that is used here is
 where $p$ is the probability that two randomly selected large integers are coprime. (Our estimate is approximate because we are limited to finite-length integers (32 bits) and we make a finite sample of integer pairs.) Thus the probability of two randomly selected large integers being coprime is the [constant](https://oeis.org/A059956)
 
 ```math
-\frac{6}{\pi^2} = 0.6079271019\dots.
+\frac{6}{\pi^2} = 0.607\,927\,101\,9\dots.
 ```
 Matt Parker explains the formula and gives a proof for it in the video above.
 
