@@ -57,7 +57,7 @@ function sum_estimates(pair_count, estimate_count, acc) do
     if estimate_count == 0 then
         return acc
     else
-        let estimate = estimate_pi(pair_count, 0)
+        let estimate = estimate_pi(pair_count)
         return sum_estimates(pair_count, estimate_count - 1, estimate + acc)
     end
 end
