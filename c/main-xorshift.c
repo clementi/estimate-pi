@@ -9,7 +9,7 @@ typedef struct {
     uint32_t a;
 } Xorshift32State;
 
-uint32_t nextUint32(Xorshift32State* state) {
+uint32_t next_uint32_t(Xorshift32State* state) {
     uint32_t x = state->a;
     x ^= x << 13;
     x ^= x >> 17;
@@ -41,7 +41,7 @@ int main(const int argc, const char** argv) {
 
     for (int i = 0; i < estimate_count; i++) {
         for (int j = 0; j < pair_count; j++) {
-            if (coprime(nextUint32(&state), nextUint32(&state))) {
+            if (coprime(next_uint32_t(&state), next_uint32_t(&state))) {
                 coprime_count++;
             }
         }
