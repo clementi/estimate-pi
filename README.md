@@ -42,7 +42,7 @@ procedure main() do
 end
 ```
 
-## Recursive Version
+### Recursive Version
 
 ```pseudocode
 procedure main() do
