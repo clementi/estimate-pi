@@ -107,6 +107,8 @@ end
 
 This exercise does not have terribly strict randomness requirements; a simple LCG or Xorshift are suitable. In many languages, I used the built-in random number generator, which is, in most cases, an LCG. I have also begun creating separate implementations that make use of Xorshift, and I may eventually convert all of them to use Xorshift for consistency.
 
+The `rand_int32` function in the pseudocode above returns either a 32-bit signed or unsigned integer, depending on the language.
+
 ## Performance
 
 As would be expected, there is a wide variance of performance with different languages. The chart below illustrates performance stats that I've gathered.
