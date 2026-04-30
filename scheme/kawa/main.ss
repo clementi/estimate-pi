@@ -2,10 +2,10 @@
 
 (define random rng:nextInt)
 
-(define (make-pair limit)
-  (cons (random limit) (random limit)))
+(define (random-int32)
+  (random java.lang.Integer:MAX_VALUE))
 
-(define (estimate-pi pair-count limit)
+(define (estimate-pi pair-count)
   (let loop ((remaining pair-count)
              (coprime-count 0))
     (if (zero? remaining)
@@ -17,22 +17,20 @@
           estimate)
         (loop (- remaining 1)
               (+ coprime-count
-                 (if (coprime? (make-pair limit)) 1 0))))))
+                 (if (coprime? (random-int32) (random-int32)) 1 0))))))
 
-(define (coprime? pair)
-  (let ((a (car pair))
-        (b (cdr pair)))
-    (= (gcd a b) 1)))
+(define (coprime? a b)
+  (= (gcd a b) 1))
 
-(define (average-estimates estimate-count pair-count limit)
+(define (average-estimates estimate-count pair-count)
   (let loop ((remaining estimate-count)
              (sum 0.0))
     (if (zero? remaining)
         (/ sum estimate-count)
         (loop (- remaining 1)
-              (+ sum (estimate-pi pair-count limit))))))
+              (+ sum (estimate-pi pair-count))))))
 
-(let ((mean (average-estimates 100 1000000 1000000000)))
+(let ((mean (average-estimates 100 1000000)))
   (display "Mean: ")
   (display mean)
   (newline))
