@@ -5,6 +5,10 @@
 (define (random-int32)
   (random java.lang.Integer:MAX_VALUE))
 
+(define (displayln s)
+  (display s)
+  (newline))
+
 (define (estimate-pi pair-count)
   (let loop ((remaining pair-count)
              (coprime-count 0))
@@ -12,8 +16,7 @@
         (let* ((proportion (/ coprime-count pair-count))
                (estimate (sqrt (/ 6 proportion))))
           (display "Estimate: ")
-          (display estimate)
-          (newline)
+          (displayln estimate)
           estimate)
         (loop (- remaining 1)
               (+ coprime-count
@@ -32,5 +35,4 @@
 
 (let ((mean (average-estimates 100 1000000)))
   (display "Mean: ")
-  (display mean)
-  (newline))
+  (displayln mean))
