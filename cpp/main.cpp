@@ -2,15 +2,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <numeric>
 
 using std::cout;
 using std::endl;
-
-unsigned int gcd(unsigned int a, unsigned int b) {
-    if (b == 0)
-        return a;
-    return gcd(b, a % b);
-}
+using std::gcd;
 
 bool coprime(unsigned int a, unsigned int b) {
     return gcd(a, b) == 1u;
