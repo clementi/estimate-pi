@@ -36,7 +36,6 @@ library
   build-depends:
       base >=4.7 && <5
     , random
-    , xorshift ==2.0.1
   default-language: Haskell2010
 
 executable haskell-exe
@@ -52,7 +51,6 @@ executable haskell-exe
       base >=4.7 && <5
     , haskell
     , random
-    , xorshift ==2.0.1
   default-language: Haskell2010
 
 test-suite haskell-test
@@ -69,5 +67,4 @@ test-suite haskell-test
       base >=4.7 && <5
     , haskell
     , random
-    , xorshift ==2.0.1
   default-language: Haskell2010
