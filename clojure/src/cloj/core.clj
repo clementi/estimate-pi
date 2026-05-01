@@ -6,13 +6,8 @@
     (inc n)
     n))
 
-(defn gcd [a b]
-  (if (zero? b)
-    a
-    (gcd b (mod a b))))
-
 (defn coprime? [a b]
-  (= (gcd a b) 1))
+  (= (.gcd (biginteger a) (biginteger b)) 1))
 
 (defn rand-int32 []
   (rand-int Integer/MAX_VALUE))
