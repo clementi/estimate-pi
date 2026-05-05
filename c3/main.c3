@@ -9,7 +9,7 @@ fn void main()
     uint pairCount = 1_000_000;
     uint estimateCount = 100;
 
-    uint limit = pow(2, 31);
+    uint limit = 2147483648;
 
     double estimateSum = 0.0;
 
