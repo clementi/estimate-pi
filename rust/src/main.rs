@@ -43,11 +43,3 @@ fn main() {
 fn coprime(a: u32, b: u32) -> bool {
     num_integer::gcd(a, b) == 1
 }
-
-// fn gcd(a: u32, b: u32) -> u32 {
-//     if b == 0 {
-//         a
-//     } else {
-//         gcd(b, a % b)
-//     }
-// }
