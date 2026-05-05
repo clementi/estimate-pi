@@ -32,16 +32,6 @@ fn void main()
     io::printfn("Mean: %.15f", estimateSum / estimateCount);
 }
 
-fn uint pow(uint base, uint expo)
-{
-    uint result = 1;
-    for (int i = 0; i < expo; i++)
-    {
-        result *= base;
-    }
-    return result;
-}
-
 fn bool coprime(uint a, uint b)
 {
     return math::gcd(a, b) == 1;
