@@ -1,3 +1,5 @@
+use num_integer;
+
 struct Xorshift32 {
     a: u32,
 }
@@ -39,13 +41,13 @@ fn main() {
 }
 
 fn coprime(a: u32, b: u32) -> bool {
-    gcd(a, b) == 1
+    num_integer::gcd(a, b) == 1
 }
 
-fn gcd(a: u32, b: u32) -> u32 {
-    if b == 0 {
-        a
-    } else {
-        gcd(b, a % b)
-    }
-}
+// fn gcd(a: u32, b: u32) -> u32 {
+//     if b == 0 {
+//         a
+//     } else {
+//         gcd(b, a % b)
+//     }
+// }
