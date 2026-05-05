@@ -83,7 +83,7 @@ function count_coprime(pair_count, acc) do
 end
 ```
 
-To determine coprimality, I used the language's standard library `gcd` function if it existed and I was aware of it; otherwise I supplied a simple recursive implementation, shown here in pseudocode:
+To determine coprimality, I used the language's standard library `gcd` function or a third-party library if it existed and I was aware of it; otherwise I supplied a simple recursive implementation, shown here in pseudocode:
 
 ```pseudocode
 function gcd(a, b) do
