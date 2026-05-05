@@ -1,5 +1,3 @@
-run: bin
-
 bin: ./estimate_pi
 
 ./estimate_pi:
