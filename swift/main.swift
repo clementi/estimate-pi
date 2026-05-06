@@ -1,5 +1,3 @@
-import Foundation
-
 struct Xorshift64: RandomNumberGenerator {
     var state: UInt64
     init(seed: UInt64 = 12345) { state = seed }
