@@ -1,5 +1,3 @@
-(import :gerbil/gambit/random)
-
 (export main)
 
 (define (make-pairs pair-count limit)
