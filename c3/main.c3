@@ -13,10 +13,10 @@ fn void main()
 
     double estimateSum = 0.0;
 
-    for (int i = 0; i < estimateCount; i++)
+    for (uint i = 0; i < estimateCount; i++)
     {
         uint coprimeCount = 0;
-        for (int j = 0; j < pairCount; j++)
+        for (uint j = 0; j < pairCount; j++)
         {
             if (coprime(rand(limit), rand(limit)))
             {
