@@ -27,9 +27,12 @@ int main(const int argc, const char** argv) {
                 coprime_count++;
             }
         }
+
         double probability = (double) coprime_count / pair_count;
         double estimate = sqrt(6.0 / probability);
+
         println("Estimate {}: {}", i, estimate);
+
         estimate_sum += estimate;
         coprime_count = 0;
     }
