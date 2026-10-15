@@ -14,10 +14,8 @@ main :: proc() {
 
     for i := 0; i < estimate_count; i += 1 {
         for j := 0; j < pair_count; j += 1 {
-
             a := rand.uint32()
             b := rand.uint32()
-
             if coprime(a, b) {
                 coprime_count += 1
             }
